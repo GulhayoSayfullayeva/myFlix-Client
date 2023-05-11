@@ -4,7 +4,7 @@ import { MovieView } from "../movie-view/movie-view";
 
 export const MainView = () => {
     const [movies, setMovies] = useState([
-        {
+       /*  {
             "id":"641369d23edd82a71107b1bb",
             "title":"Silence of the Lambs",
             "description":"A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer.",
@@ -37,7 +37,7 @@ export const MainView = () => {
             "Actors":[],
             "director":{"name":"George Lucas","bio":"George Walton Lucas Jr. is an American filmmaker. Lucas is best known for creating the Star Wars and Indiana Jones franchises and founding Lucasfilm, LucasArts, Industrial Light & Magic and THX.","Birthyear":"1944"},
             "genre":{"name":"science fiction","description":"Science fiction (or sci-fi) is a film genre that uses speculative, fictional science-based depictions of phenomena that are not fully accepted by mainstream science, such as extraterrestrial lifeforms, spacecraft, robots, cyborgs, dinosaurs, interstellar travel, time travel, or other technologies."}
-        }
+        } */
 
     ]);
    
