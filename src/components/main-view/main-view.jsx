@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+
 import PropTypes from 'prop-types';
 
 export const MainView = () => {
@@ -43,50 +44,66 @@ export const MainView = () => {
 
   ]);
 
-  
+
   const [selectedMovie, setSelectedMovie] = useState(null);
 
-  useEffect( () => {
-     fetch("https://myflix-h3mr.onrender.com/movies")
-     .then((response) => response.json())
-     .then((data) => {
+  useEffect(() => {
+    fetch("https://myflix-h3mr.onrender.com/movies")
+      .then((response) => response.json())
+      .then((data) => {
         console.log("MovieList");
-        const moviesFromApi = data.docs.map((movie) => {
-           return {
-            id : movie._id,
-            title : movie.Title,
-            description : movie.Description,
-            director : {
-              name : movie.Director.Name,
-              bio : movie.Director.Bio,
-              birthday : movie.Director.Birth 
+        const moviesFromApi = data.map((movie) => {
+          console.log(movie.Director.name);
+          return {
+            id: movie._id,
+            title: movie.title,
+            description: movie.description,
+            director: {
+              name: movie.Director.name,
+              bio: movie.Director.bio,
+              birthday: movie.Director.Birth
             },
-            genre : {
-              name : movie.Genre.Name,
-              description : movie.Genre.Description
+            genre: {
+              name: movie.Genre.Name,
+              description: movie.Genre.description
             },
-            Actors : movie.Actors,
-            image : movie.imageUrl
-           };
+            Actors: movie.Actors,
+            image: movie.imageUrl
+          };
         });
         setMovies(moviesFromApi);
-     });
+      });
   }, []);
 
   if (selectedMovie) {
-    return <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />;
-  }
+    const similarMovies = movies.filter((movie) => {
+      return movie.id !== selectedMovie.id && movie.genre.name === selectedMovie.genre.name;
+    });
+    return (<div>
 
-  if (movies.length === 0) {
-    return <div>No movies</div>
-  }
+      <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+      <hr/>
+      <h2>Similar Movies</h2>
+      {similarMovies.map((movie) => (
+         <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)}/>
+        ))
+      }
 
-  return (
-    <div>
-      {movies.map((movie) => (
-        <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
-      ))}
     </div>
+    );
+  }
 
-  );
-}
+
+    if (movies.length === 0) {
+      return <div>No movies</div>
+    }
+
+    return (
+      <div>
+        {movies.map((movie) => (
+          <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
+        ))}
+      </div>
+
+    );
+  }
