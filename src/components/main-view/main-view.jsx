@@ -6,11 +6,11 @@ import PropTypes from 'prop-types';
 export const MainView = () => {
 
   const [movies, setMovies] = useState([
-  /*   {
+    {
       "id": "641369d23edd82a71107b1bb",
       "title": "Silence of the Lambs",
       "description": "A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer.",
-      "genre": { "name": "Thriller", "description": "Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involves excitement and suspense in the audience." },
+      "genre": { "name": "fantasy", "description": "Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involves excitement and suspense in the audience." },
       "director": { "name": "Jonathan Demme", "bio": "Robert Jonathan Demme was an American director, producer, and screenwriter.", "Birth": "1944", "Death": "2017" },
       "image": "https://upload.wikimedia.org/wikipedia/en/8/86/The_Silence_of_the_Lambs_poster.jpg",
       "featured": true,
@@ -40,7 +40,7 @@ export const MainView = () => {
       "director": { "name": "George Lucas", "bio": "George Walton Lucas Jr. is an American filmmaker. Lucas is best known for creating the Star Wars and Indiana Jones franchises and founding Lucasfilm, LucasArts, Industrial Light & Magic and THX.", "Birthyear": "1944" },
       "genre": { "name": "science fiction", "description": "Science fiction (or sci-fi) is a film genre that uses speculative, fictional science-based depictions of phenomena that are not fully accepted by mainstream science, such as extraterrestrial lifeforms, spacecraft, robots, cyborgs, dinosaurs, interstellar travel, time travel, or other technologies." }
     }
- */
+
   ]);
 
   
