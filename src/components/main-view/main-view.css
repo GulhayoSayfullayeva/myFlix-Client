@@ -1,6 +1,5 @@
 .application{
     display: flex;
-    
     flex-direction: column;
     height: 100vh;
     background: url("https://cdn.pixabay.com/photo/2019/03/23/21/36/geometric-4076402_960_720.png");

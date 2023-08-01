@@ -1,9 +1,5 @@
-* {
-  margin: 20px;
-}
-
-.my-flix {
-  color: #4682b4;
+body {
+  margin: 0;
 }
 
 .application {
@@ -59,7 +55,7 @@ h2:hover {
   background-color: #5f89e6;
 }
 
-details-page {
+.details-page {
   justify-content: left;
   align-items: center;
   margin: 40px;

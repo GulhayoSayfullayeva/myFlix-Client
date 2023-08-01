@@ -57,7 +57,7 @@ export const MainView = () => {
       return;
     }
     fetch("https://myflix-h3mr.onrender.com/movies", {
-      headers: { Authorisation: `Bearer $token` }
+      headers: { Authorization: `Bearer ${token}` }
     })
       .then((response) => response.json())
       .then((data) => {

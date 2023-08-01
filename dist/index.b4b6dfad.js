@@ -27173,7 +27173,7 @@ const MainView = ()=>{
         if (!token) return;
         fetch("https://myflix-h3mr.onrender.com/movies", {
             headers: {
-                Authorisation: `Bearer $token`
+                Authorization: `Bearer ${token}`
             }
         }).then((response)=>response.json()).then((data)=>{
             const moviesFromApi = data.map((movie)=>{
