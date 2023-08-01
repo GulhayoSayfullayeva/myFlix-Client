@@ -1,7 +1,7 @@
 import "./login-view.css";
 import { Register } from "../register/register.jsx";
 import { useState } from "react";
-import { Test } from "../test/test";
+
 
 export const LoginView = ({ onLoginSubmit }) => {
    const [userName, setUserName] = useState("");

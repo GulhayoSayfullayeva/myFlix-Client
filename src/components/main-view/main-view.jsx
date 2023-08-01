@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { MovieCard } from "../movie-card/movie-card.jsx";
-import { MovieView } from "../movie-view/movie-view.jsx";
-import { LoginView } from "../login/login-view.jsx";
+import { MovieCard } from "../movie-card/movie-card";
+import { MovieView } from "../movie-view/movie-view";
+import { LoginView } from "../login/login-view";
 import "./main-view.css"
 
 import PropTypes from 'prop-types';
