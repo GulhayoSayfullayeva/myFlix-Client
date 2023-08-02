@@ -1,9 +1,137 @@
-* {
-  margin: 20px;
+body {
+  margin: 0;
 }
 
-.my-flix {
-  color: #4682b4;
+.application {
+  height: 100vh;
+  background: url("https://cdn.pixabay.com/photo/2019/03/23/21/36/geometric-4076402_960_720.png") 0 0 / cover;
+  flex-direction: column;
+  display: flex;
+}
+
+.navbar {
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 50px;
+  display: flex;
+}
+
+h1 {
+  text-shadow: 2px;
+  margin-left: 20px;
+  font-size: 36px;
+}
+
+h2 {
+  text-shadow: 5px;
+  margin-left: 30px;
+  font-size: 24px;
+  text-decoration: underline;
+}
+
+h2:hover {
+  color: brown;
+}
+
+.application-title {
+  align-items: center;
+  display: flex;
+}
+
+.application-detail {
+  border: 1px solid #895cf1;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.movieCard {
+  text-align: left;
+  border-bottom: 1px solid #3d72e2;
+  margin: 20px;
+  padding: 20px;
+}
+
+.movieCard:hover {
+  background-color: #5f89e6;
+}
+
+.details-page {
+  justify-content: left;
+  align-items: center;
+  margin: 40px;
+  display: flex;
+}
+
+img {
+  border-radius: 30%;
+}
+
+.details {
+  margin-left: 40px;
+}
+
+.movie-details {
+  border-bottom: 1px solid #3d72e2;
+  padding: 10px;
+}
+
+.bold {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.normal {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.login {
+  height: 100vh;
+  background: url("https://cdn.pixabay.com/photo/2019/03/23/21/36/geometric-4076402_960_720.png") center / cover;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  overflow: hidden;
+}
+
+.form {
+  background-color: #c8c1d8;
+  border-radius: 5px;
+  flex-direction: column;
+  padding: 40px 50px;
+  display: flex;
+}
+
+login {
+  color: #250125;
+  text-align: center;
+}
+
+input {
+  width: 300px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin: 10px 0;
+  padding: 15px;
+}
+
+button {
+  color: #fff;
+  cursor: pointer;
+  background-color: #1c0080;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.signup {
+  text-align: center;
 }
 
 /*# sourceMappingURL=index.ce1d6491.css.map */

@@ -1,0 +1,10 @@
+.movieCard{
+    margin: 20px;
+    padding:20px;
+    text-align: left;
+    border-bottom: 1px solid rgb(61, 114, 226);
+     
+ }
+ .movieCard:hover{
+     background-color:  rgb(95, 137, 230);
+ }
