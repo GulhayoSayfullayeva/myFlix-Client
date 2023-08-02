@@ -3,6 +3,9 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login/login";
 import "./main-view.css"
+import { Container } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
+import { Button, Row, Col}from "react-bootstrap";
 
 import PropTypes from 'prop-types';
 
@@ -122,7 +125,39 @@ export const MainView = () => {
   console.log(userName);
   return (
     <div className="application">
-      <div className="navbar">
+      <Navbar className="navbar">
+      <Container>
+        <Navbar.Brand href="#home" className="justify-content-space-between">
+        <img src="https://icons.veryicon.com/png/o/miscellaneous/eva-icon-fill/list-47.png" height="45" width="45" alt="" />
+             {' '} 
+             <Navbar.Text>MovieList</Navbar.Text>
+          </Navbar.Brand>
+        <Navbar.Toggle />
+        <Navbar.Collapse className="justify-content-end">
+          <Navbar.Text onClick={() => {
+            setUserName(null);
+            setToken(null);
+            localStorage.clear();
+          }}>
+            Logout
+          </Navbar.Text>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+    <Row >
+                {movies.map((movie) => (
+                    <Col className="mb-5 d-flex" key={movie.id}  xs={12} sm={6} md={3}>
+                        <MovieCard
+                            movie={movie}
+                            onMovieClick={(newSelectedMovie) => {
+                                setSelectedMovie(newSelectedMovie);
+                            }}
+                        />
+                    </Col>
+
+                ))}
+            </Row>
+      {/* <div className="navbar">
         <div className="application-title">
           <img src="https://icons.veryicon.com/png/o/miscellaneous/eva-icon-fill/list-47.png" height="45" width="45" />
           <h1>MovieList</h1>
@@ -139,7 +174,7 @@ export const MainView = () => {
         {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
         ))}
-      </div>
+      </div> */}
 
     </div>
 

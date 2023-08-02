@@ -1,4 +1,4 @@
-import "./login-view.css";
+import "./login.css";
 import { Register } from "../register/register.jsx";
 import { useState } from "react";
 
