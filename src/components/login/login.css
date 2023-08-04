@@ -20,14 +20,6 @@
 }
 
 
-input{
-    padding : 15px;
-    margin: 10px 10px;
-    border: 1px solid gray;
-    border-radius: 5px;
-    width: 300px;
-
-}
 
 button {
     padding: 10px;
@@ -42,6 +34,9 @@ button {
     margin-bottom: 30px;
 }
 
-.signup{
-    text-align: center;
+.logout-button{
+    cursor: pointer;
+}
+.logout-button:hover{
+    color: brown;
 }

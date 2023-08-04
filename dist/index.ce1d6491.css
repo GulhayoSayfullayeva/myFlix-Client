@@ -2,6 +2,11 @@ body {
   margin: 0;
 }
 
+container {
+  margin: 0;
+  padding: 0;
+}
+
 .application {
   height: 100%;
   flex-direction: column;
@@ -12,7 +17,7 @@ body {
   background-color: #996af7;
 }
 
-.navbarrrrr {
+.navbarrrrrr {
   flex-direction: row;
   justify-content: space-between;
   margin: 50px;
@@ -47,6 +52,18 @@ h2:hover {
   margin-right: 20px;
 }
 
+.bold {
+  font-weight: bold;
+}
+
+.logout-button {
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  color: #000;
+}
+
 .movieCard {
   text-align: left;
   border-bottom: 1px solid #3d72e2;
@@ -58,36 +75,7 @@ h2:hover {
   background-color: #5f89e6;
 }
 
-.details-page {
-  justify-content: left;
-  align-items: center;
-  margin: 40px;
-  display: flex;
-}
 
-img {
-  border-radius: 30%;
-}
-
-.details {
-  margin-left: 40px;
-}
-
-.movie-details {
-  border-bottom: 1px solid #3d72e2;
-  padding: 10px;
-}
-
-.bold {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.normal {
-  text-align: center;
-  font-size: 20px;
-  font-weight: bold;
-}
 
 .login {
   height: 100vh;
@@ -107,14 +95,6 @@ img {
   display: flex;
 }
 
-input {
-  width: 300px;
-  border: 1px solid gray;
-  border-radius: 5px;
-  margin: 10px;
-  padding: 15px;
-}
-
 button {
   color: #fff;
   cursor: pointer;
@@ -128,8 +108,12 @@ button {
   font-weight: bold;
 }
 
-.signup {
-  text-align: center;
+.logout-button {
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  color: brown;
 }
 
 :root, [data-bs-theme="light"] {

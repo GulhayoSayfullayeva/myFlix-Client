@@ -5,7 +5,7 @@ import { LoginView } from "../login/login";
 import "./main-view.css"
 import { Container } from "react-bootstrap";
 import { Navbar } from "react-bootstrap";
-import { Button, Row, Col}from "react-bootstrap";
+import { Button, Row, Col } from "react-bootstrap";
 
 import PropTypes from 'prop-types';
 
@@ -53,7 +53,7 @@ export const MainView = () => {
   const savedToken = localStorage.getItem("token");
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [userName, setUserName] = useState(savedUser ? savedUser : null);
-  const [token, setToken] = useState( savedToken ? savedToken : null);
+  const [token, setToken] = useState(savedToken ? savedToken : null);
 
   useEffect(() => {
     if (!token) {
@@ -87,96 +87,87 @@ export const MainView = () => {
       });
   }, [token]);
 
-  if (userName === null) {
-    console.log(userName);
-    return (
-      <div>
-        <LoginView onLoginSubmit={(user, token) => {
-          setUserName(user);
-          setToken(token);
-        }
-        } />
-      </div>
-    );
+/* Main views of the application */
 
-  }
-  if (selectedMovie) {
-    const similarMovies = movies.filter((movie) => {
-      return movie.id !== selectedMovie.id && movie.genre.name === selectedMovie.genre.name;
-    });
-    return (<div className="application">
+  return (
+    <Row className="justify-content-md-center">
+      {!userName ?
+        (
+          <div>
+            <LoginView onLoginSubmit={(user, token) => {
+              setUserName(user);
+              setToken(token);
+            }
+            } />
+          </div>
+        ) : selectedMovie ? (
 
-      <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-      <hr />
-      <h2>Similar Movies</h2>
-      {similarMovies.map((movie) => (
-        <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
-      ))
+          <Col md={6} className="application">
+            <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+          </Col>
+        ) : (
+          <div className="application">
+            <Navbar className="navbar bg-primary">
+              <Container>
+                <Navbar.Brand href="#home" className="justify-content-space-between application-title">
+                  <img src="https://icons-for-free.com/iconfiles/png/512/svg+general+ham+list+menu+menu+icon+office+icon-1320185157378483623.png" height="45" width="45" alt="" />
+                  {' '}
+                  <Navbar.Text className="fs-3 bold text-white">MovieList</Navbar.Text>
+                </Navbar.Brand>
+                <Navbar.Toggle />
+                <Navbar.Collapse className="justify-content-end">
+                  <Navbar.Text  onClick={() => {
+                    setUserName(null);
+                    setToken(null);
+                    localStorage.clear();
+                  }}>
+                    <span className="logout-button fs-4 text-white">Logout</span>
+
+                  </Navbar.Text>
+                </Navbar.Collapse>
+              </Container>
+            </Navbar>
+            <Row >
+              {movies.map((movie) => (
+                <Col className="mb-5 d-flex" key={movie.id} xs={12} sm={6} md={3}>
+                  <MovieCard
+                    movie={movie}
+                    onMovieClick={(newSelectedMovie) => {
+                      setSelectedMovie(newSelectedMovie);
+                    }}
+                  />
+                </Col>
+
+              ))}
+            </Row>
+
+          </div>
+        )
       }
+    </Row>
+  );
 
-    </div>
-    );
-  }
+  /*  if (selectedMovie) {
+     const similarMovies = movies.filter((movie) => {
+       return movie.id !== selectedMovie.id && movie.genre.name === selectedMovie.genre.name;
+     });
+     return (<div className="application">
+ 
+       <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+       <hr />
+       <h2>Similar Movies</h2>
+       {similarMovies.map((movie) => (
+         <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
+       ))
+       }
+ 
+     </div>
+     );
+   } */
 
 
   if (movies.length === 0) {
     return <div>No movies</div>
   }
-  console.log(userName);
-  return (
-    <div className="application">
-      <Navbar className="navbar">
-      <Container>
-        <Navbar.Brand href="#home" className="justify-content-space-between">
-        <img src="https://icons.veryicon.com/png/o/miscellaneous/eva-icon-fill/list-47.png" height="45" width="45" alt="" />
-             {' '} 
-             <Navbar.Text>MovieList</Navbar.Text>
-          </Navbar.Brand>
-        <Navbar.Toggle />
-        <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text onClick={() => {
-            setUserName(null);
-            setToken(null);
-            localStorage.clear();
-          }}>
-            Logout
-          </Navbar.Text>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-    <Row >
-                {movies.map((movie) => (
-                    <Col className="mb-5 d-flex" key={movie.id}  xs={12} sm={6} md={3}>
-                        <MovieCard
-                            movie={movie}
-                            onMovieClick={(newSelectedMovie) => {
-                                setSelectedMovie(newSelectedMovie);
-                            }}
-                        />
-                    </Col>
 
-                ))}
-            </Row>
-      {/* <div className="navbar">
-        <div className="application-title">
-          <img src="https://icons.veryicon.com/png/o/miscellaneous/eva-icon-fill/list-47.png" height="45" width="45" />
-          <h1>MovieList</h1>
-        </div>
-
-        <h2 onClick={() => {
-          setUserName(null);
-          setToken(null);
-          localStorage.clear();
-        }
-        }>Logout</h2>
-      </div>
-      <div className="application-detail">
-        {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} onMovieClick={(newSelectedMovie) => setSelectedMovie(newSelectedMovie)} />
-        ))}
-      </div> */}
-
-    </div>
-
-  );
-}
+};

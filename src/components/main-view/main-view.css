@@ -12,7 +12,7 @@
     background-color: #996af7;
 }
 
-.navbarrrrr{
+.navbarrrrrr{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -41,4 +41,14 @@ h2:hover{
     border: 1px solid rgb(137, 92, 241);
     margin-left: 20px;
     margin-right: 20px;
+}
+.bold{
+    font-weight: bold;
+}
+
+.logout-button{
+    cursor: pointer;
+}
+.logout-button:hover{
+    color: black;
 }
