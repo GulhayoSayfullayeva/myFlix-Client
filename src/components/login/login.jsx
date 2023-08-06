@@ -1,6 +1,7 @@
-import "./login-view.css";
+import "./login.css";
 import { Register } from "../register/register.jsx";
 import { useState } from "react";
+import { Form, Button } from "react-bootstrap";
 
 
 export const LoginView = ({ onLoginSubmit }) => {
@@ -33,9 +34,32 @@ export const LoginView = ({ onLoginSubmit }) => {
 
    };
    if (!clicked) {
-      console.log(clicked);
       return (<div className="login">
-         <h1>Login</h1>
+
+         <Form className="form" onSubmit={handleSubmit}>
+            <Form.Text  className="text-center mb-3 fs-3 logout-button text-black">Login Page</Form.Text>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+               <Form.Label>Username</Form.Label>
+               <Form.Control  type="text" placeholder="Enter username" value={userName} onChange={(e) => setUserName(e.target.value)} required/>
+               <Form.Text className="text-muted">
+                  We'll never share your username with anyone else.
+               </Form.Text>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+               <Form.Label>Password</Form.Label>
+               <Form.Control type="password" placeholder="Password" value={pass} onChange={(e) => setPass(e.target.value)} required/>
+            </Form.Group>
+            <Button variant="primary" type="submit">
+               Submit
+            </Button>
+            <Form.Text className="text-muted text-center">Don't have account?<br/></Form.Text>
+            <Form.Text className="text-center logout-button" onClick={() =>{
+               setClicked(true);
+            }}>Signup</Form.Text>
+         </Form>
+
+        {/*  <h1>Login</h1>
          <form className="form" onSubmit={handleSubmit}>
             <label>Username</label>
             <input type="text" name="username" placeholder="username" value={userName} onChange={(e) => setUserName(e.target.value)} required></input>
@@ -48,15 +72,15 @@ export const LoginView = ({ onLoginSubmit }) => {
                   setClicked(true);
                }}>Signup</div>
             </div>
-         </form>
+         </form> */}
       </div>);
    }
    else {
       console.log(clicked);
-      return(
-      <div>
-         <Register afterRegis={() => setClicked(false)} />
-      </div>);
+      return (
+         <div>
+            <Register afterRegis={() => setClicked(false)} />
+         </div>);
    }
 
 

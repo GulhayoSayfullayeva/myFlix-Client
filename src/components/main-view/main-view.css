@@ -1,12 +1,18 @@
 .application{
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    background: url("https://cdn.pixabay.com/photo/2019/03/23/21/36/geometric-4076402_960_720.png");
+    height: 100%;
+    /* background: url("https://cdn.pixabay.com/photo/2019/03/23/21/36/geometric-4076402_960_720.png");
     background-size: cover;
+    background-repeat: no-repeat; */
+
 }
 
 .navbar{
+    background-color: #996af7;
+}
+
+.navbarrrrrr{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -35,4 +41,14 @@ h2:hover{
     border: 1px solid rgb(137, 92, 241);
     margin-left: 20px;
     margin-right: 20px;
+}
+.bold{
+    font-weight: bold;
+}
+
+.logout-button{
+    cursor: pointer;
+}
+.logout-button:hover{
+    color: black;
 }
