@@ -1,8 +1,15 @@
 import PropTypes from 'prop-types';
 import "./movie-view.css"
 import { Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movies }) => {
+    const {movieTitle} = useParams();
+    const movie = movies.find((movie) => movie.title === movieTitle);
+    console.log(movieTitle);
+    console.log(movie);
+
     return (
         <Card border="primary" className="movieCard">
         <Card.Img height="30%" className="object-fit-cover flex-fill" src={movie.image}/>
@@ -13,7 +20,9 @@ export const MovieView = ({ movie, onBackClick }) => {
                Director: {movie.director.name}<br/>
                Genre: {movie.genre.name}<br/>
             </Card.Text>
-            <Button variant='primary' onClick={onBackClick}>Back</Button>
+            <Link to={"/"}>
+            <Button variant="primary" type='link'>Back</Button>
+            </Link>
         </Card.Body>
     </Card>);
        /*  <div className="details-page">
@@ -58,6 +67,5 @@ MovieView.propTypes = {
             name: PropTypes.string.isRequired,
             description: PropTypes.string
         })
-    }),
-    onBackClick: PropTypes.func.isRequired
+    })
 };

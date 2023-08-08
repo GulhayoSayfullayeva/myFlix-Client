@@ -6,8 +6,11 @@ import "./main-view.css"
 import { Container } from "react-bootstrap";
 import { Navbar } from "react-bootstrap";
 import { Button, Row, Col } from "react-bootstrap";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import PropTypes from 'prop-types';
+import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { Register } from "../register/register";
 
 export const MainView = () => {
 
@@ -51,7 +54,6 @@ export const MainView = () => {
 
   const savedUser = JSON.parse(localStorage.getItem("user"));
   const savedToken = localStorage.getItem("token");
-  const [selectedMovie, setSelectedMovie] = useState(null);
   const [userName, setUserName] = useState(savedUser ? savedUser : null);
   const [token, setToken] = useState(savedToken ? savedToken : null);
 
@@ -83,68 +85,153 @@ export const MainView = () => {
             image: movie.imageUrl
           };
         });
+
         setMovies(moviesFromApi);
+        console.log(movies);
       });
   }, [token]);
 
-/* Main views of the application */
+  /* Main views of the application */
 
   return (
-    <Row className="justify-content-md-center">
-      {!userName ?
-        (
-          <div>
-            <LoginView onLoginSubmit={(user, token) => {
-              setUserName(user);
-              setToken(token);
+    <BrowserRouter>
+      <NavigationBar
+        user={userName}
+        onLogout={() => {
+          setUserName(null);
+          setToken(null);
+          localStorage.clear();
+        }}
+      />
+      <Row className="justify-content-md-center">
+        <Routes>
+          <Route path="/register"
+            element={
+              <>
+                {userName ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col>
+                    <Register />
+                  </Col>
+                )}
+              </>
             }
-            } />
-          </div>
-        ) : selectedMovie ? (
+          />
+          <Route path="/login"
+            element={
+              <>
+                {userName ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col>
+                    <LoginView onLoginSubmit={(user, token) => {
+                      setUserName(user);
+                      setToken(token);
+                    }} />
+                  </Col>
+                )}
+              </>
+            }
+          />
 
-          <Col md={6} className="application">
-            <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-          </Col>
-        ) : (
-          <div className="application">
-            <Navbar className="navbar bg-primary">
-              <Container>
-                <Navbar.Brand href="#home" className="justify-content-space-between application-title">
-                  <img src="https://icons-for-free.com/iconfiles/png/512/svg+general+ham+list+menu+menu+icon+office+icon-1320185157378483623.png" height="45" width="45" alt="" />
-                  {' '}
-                  <Navbar.Text className="fs-3 bold text-white">MovieList</Navbar.Text>
-                </Navbar.Brand>
-                <Navbar.Toggle />
-                <Navbar.Collapse className="justify-content-end">
-                  <Navbar.Text  onClick={() => {
-                    setUserName(null);
-                    setToken(null);
-                    localStorage.clear();
-                  }}>
-                    <span className="logout-button fs-4 text-white">Logout</span>
+          <Route path="/movies/:movieTitle"
+            element={
+              <>
+                {!userName ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <Col>No movies</Col>
+                ) : (
+                  <Col md={6} className="application">
+                    <MovieView movies={movies} />
+                  </Col>
+                )}
+              </>
+            }
+          />
 
-                  </Navbar.Text>
-                </Navbar.Collapse>
-              </Container>
-            </Navbar>
-            <Row >
-              {movies.map((movie) => (
-                <Col className="mb-5 d-flex" key={movie.id} xs={12} sm={6} md={3}>
-                  <MovieCard
-                    movie={movie}
-                    onMovieClick={(newSelectedMovie) => {
-                      setSelectedMovie(newSelectedMovie);
-                    }}
-                  />
-                </Col>
+          <Route path="/"
+            element={
+              <>
+                {!userName ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <Col>No movies</Col>
+                ) : (
+                  <>
+                    {movies.map((movie) => (
+                      <Col className="mb-5 d-flex" key={movie.id} xs={12} sm={6} md={4} lg={3}>
+                        <MovieCard movie={movie} />
+                      </Col>
+                    ))}
+                  </>
+                )}
+              </>
+            }
+          />
 
-              ))}
-            </Row>
 
-          </div>
-        )
-      }
-    </Row>
+        </Routes>
+      </Row>
+      {/*       <Row className="justify-content-md-center">
+        {!userName ?
+          (
+            <div>
+              <LoginView onLoginSubmit={(user, token) => {
+                setUserName(user);
+                setToken(token);
+              }
+              } />
+            </div>
+          ) : selectedMovie ? (
+
+            <Col md={6} className="application">
+              <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+            </Col>
+          ) : (
+            <div className="application">
+              <Navbar className="navbar bg-primary">
+                <Container>
+                  <Navbar.Brand href="#home" className="justify-content-space-between application-title">
+                    <img src="https://icons-for-free.com/iconfiles/png/512/svg+general+ham+list+menu+menu+icon+office+icon-1320185157378483623.png" height="45" width="45" alt="" />
+                    {' '}
+                    <Navbar.Text className="fs-3 bold text-white">MovieList</Navbar.Text>
+                  </Navbar.Brand>
+                  <Navbar.Toggle />
+                  <Navbar.Collapse className="justify-content-end">
+                    <Navbar.Text onClick={() => {
+                      setUserName(null);
+                      setToken(null);
+                      localStorage.clear();
+                    }}>
+                      <span className="logout-button fs-4 text-white">Logout</span>
+
+                    </Navbar.Text>
+                  </Navbar.Collapse>
+                </Container>
+              </Navbar>
+              <Row >
+                {movies.map((movie) => (
+                  <Col className="mb-5 d-flex" key={movie.id} xs={12} sm={6} md={3}>
+                    <MovieCard
+                      movie={movie}
+                      onMovieClick={(newSelectedMovie) => {
+                        setSelectedMovie(newSelectedMovie);
+                      }}
+                    />
+                  </Col>
+
+                ))}
+              </Row>
+
+            </div>
+          )
+        }
+      </Row> */}
+
+    </BrowserRouter>
+
   );
 
   /*  if (selectedMovie) {
@@ -166,8 +253,6 @@ export const MainView = () => {
    } */
 
 
-  if (movies.length === 0) {
-    return <div>No movies</div>
-  }
+
 
 };
