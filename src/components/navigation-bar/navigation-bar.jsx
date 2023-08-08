@@ -9,7 +9,7 @@ export const NavigationBar = ({ user, onLogout }) => {
                 <Navbar.Brand className="fs-3" as={Link} to="/">MovieList App</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-                    <Nav className="text-white fs-4 logout-button">
+                    <Nav className="text-white fs-4">
 
                         {!user && (
                             <>

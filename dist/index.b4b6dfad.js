@@ -47398,7 +47398,7 @@ const NavigationBar = ({ user , onLogout  })=>{
                     id: "basic-navbar-nav",
                     className: "justify-content-end",
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav), {
-                        className: "text-white fs-4 logout-button",
+                        className: "text-white fs-4",
                         children: [
                             !user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                                 children: [
