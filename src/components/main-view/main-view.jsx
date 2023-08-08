@@ -11,6 +11,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { Register } from "../register/register";
+import { ProfileView } from "../profile-view/profile-view";
 
 export const MainView = () => {
 
@@ -150,7 +151,7 @@ export const MainView = () => {
               </>
             }
           />
-
+    {/*  The route for the main page of the app in order to display the list of movies */}
           <Route path="/"
             element={
               <>
@@ -170,6 +171,21 @@ export const MainView = () => {
               </>
             }
           />
+
+      {/*     The route for profile view */}
+      <Route path="/profile"
+        element={
+          <>
+            { !userName ? (
+              <Navigate to="/login" replace />
+            ) : (
+              <Col>
+               <ProfileView/>
+              </Col>
+            )}
+          </>
+        }
+        />
 
 
         </Routes>
