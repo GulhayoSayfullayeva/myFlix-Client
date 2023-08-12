@@ -190,8 +190,15 @@ export const MainView = () => {
             ) : (
               <Col>
                <ProfileView user={userObject} movies={movies} token={token} updateUsername={(user) => {
-                      setUserName(user.username);
-                      setUserObject(user);
+                      if( user !== null){
+                        setUserName(user.username);
+                        setUserObject(user);
+                      }
+                      else{
+                        setUserName(null);
+                        setUserObject(null);
+                      }
+                      
                     }} />
               </Col>
             )}

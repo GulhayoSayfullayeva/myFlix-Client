@@ -5,20 +5,20 @@ import "../movie-card/movie-card.css";
 import { MovieCard } from "../movie-card/movie-card.jsx";
 
 export const ProfileView = ({ user, movies, token, updateUsername }) => {
-    
+
     const [username, setUsername] = useState(user.username);
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState(user.email);
     const [birthday, setBirthday] = useState(user.birthday);
     const [show, setShow] = useState(false);
     const [deregister, setDeregister] = useState(false);
-    const favourite_movies = movies.filter((movie) => user.favourite_movies.includes(movie.id) );
+    const favourite_movies = movies.filter((movie) => user.favourite_movies.includes(movie.id));
 
 
     handleShow = () => setShow(true);
     handleClose = () => setShow(false);
-    updateUser = (event) => {
-        event.preventDefault();
+    updateUser = () => {
+       
 
         const data = {
             username: username,
@@ -26,40 +26,42 @@ export const ProfileView = ({ user, movies, token, updateUsername }) => {
             email: email,
             birthday: birthday
         };
-        fetch("https://myflix-h3mr.onrender.com/users/" + userName, {
-         method: "PUT",
-         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-         body: JSON.stringify(data)
-      }).then((response) => response.json())
-         .then((res) => {
-            console.log(userName);
-            console.log(res);
-            if (res.username) {
-               localStorage.setItem("user", JSON.stringify(res.username));
-               localStorage.setItem("userObject", JSON.stringify(res));
-               updateUsername(res);
-               alert("Your account is updated");
-            }
-            else {
-               alert("Update failed");
-            }
-         });
-         handleClose();
+        fetch("https://myflix-h3mr.onrender.com/users/" + user.username, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+            body: JSON.stringify(data)
+        }).then((response) => response.json())
+            .then((res) => {
+                if (res.username) {
+                    localStorage.setItem("user", JSON.stringify(res.username));
+                    localStorage.setItem("userObject", JSON.stringify(res));
+                    updateUsername(res);
+                    alert("Your account is updated");
+                }
+                else {
+                    alert("Update failed");
+                }
+            });
+        setShow(false);
 
     };
     deleteUser = () => {
-        fetch("https://myflix-h3mr.onrender.com/users")
-            .then((response) => response.json())
+        fetch("https://myflix-h3mr.onrender.com/users/" + username, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` }
+            })
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+            })
             .then((data) => {
                 console.log(data);
-                console.log(userName);
-                const User = data.find((user) => user.username === userName);
-                console.log(User);
-                setUser(User);
-            
-                const favoriteMoviesfromList = movies.filter((movie) => user.favourite_movies.includes(movie.id));
-                setFavoriteMovies(favoriteMoviesfromList);
-                console.log(favoriteMovies);
+                alert("Your account is deleted successfully!");
+                updateUsername(null);
+                localStorage.clear();
+                window.location.reload();
+
 
             });
     };
@@ -101,7 +103,7 @@ export const ProfileView = ({ user, movies, token, updateUsername }) => {
                     <Modal.Title className="ms-auto">Update Profile</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form onSubmit={updateUser}>
+                    <Form>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Username</Form.Label>
                             <Form.Control type="email" placeholder={username} value={username} onChange={(e) => setUsername(e.target.value)} required />
@@ -109,7 +111,7 @@ export const ProfileView = ({ user, movies, token, updateUsername }) => {
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" placeholder="Enter your new password"  onChange={(e) => setPassword(e.target.value)} required />
+                            <Form.Control type="password" placeholder="Enter your new password" onChange={(e) => setPassword(e.target.value)} required />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicUsername">
@@ -119,7 +121,7 @@ export const ProfileView = ({ user, movies, token, updateUsername }) => {
 
                         <Form.Group className="mb-3" controlId="formBasicBirthday">
                             <Form.Label>Birthday</Form.Label>
-                            <Form.Control type="date" value={birthday} onChange={(e) => setBirthday(e.target.value)} required/>
+                            <Form.Control type="date" value={birthday} onChange={(e) => setBirthday(e.target.value)} required />
                         </Form.Group>
 
 
@@ -129,7 +131,7 @@ export const ProfileView = ({ user, movies, token, updateUsername }) => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" type="submit">
+                    <Button variant="primary" onClick={updateUser}>
                         Update User
                     </Button>
                 </Modal.Footer>
