@@ -11,7 +11,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { Register } from "../register/register";
-import { ProfileView } from "../profile-view/profile-view";
+import { ProfileView } from "../profile-view/profile-view.jsx";
 
 export const MainView = () => {
 
@@ -55,8 +55,10 @@ export const MainView = () => {
 
   const savedUser = JSON.parse(localStorage.getItem("user"));
   const savedToken = localStorage.getItem("token");
+  const savedUserObject = JSON.parse(localStorage.getItem("userObject"));
   const [userName, setUserName] = useState(savedUser ? savedUser : null);
   const [token, setToken] = useState(savedToken ? savedToken : null);
+  const [userObject, setUserObject] = useState(savedUserObject ? savedUserObject : null);
 
   useEffect(() => {
     if (!token) {
@@ -88,7 +90,7 @@ export const MainView = () => {
         });
 
         setMovies(moviesFromApi);
-        console.log(movies);
+        console.log(moviesFromApi);
       });
   }, [token]);
 
@@ -126,10 +128,11 @@ export const MainView = () => {
                   <Navigate to="/" />
                 ) : (
                   <Col>
-                    <LoginView onLoginSubmit={(user, token) => {
+                    <LoginView onLoginSubmit={(user, token, userObject) => {
                       setUserName(user);
                       setToken(token);
-                    }} />
+                      setUserObject(userObject);
+                    }}/>
                   </Col>
                 )}
               </>
@@ -145,7 +148,10 @@ export const MainView = () => {
                   <Col>No movies</Col>
                 ) : (
                   <Col md={6} className="application">
-                    <MovieView movies={movies} />
+                    <MovieView movies={movies} user={userObject} token={token} setuser={(user) =>{
+                          setUserName(user.username);
+                          setUserObject(user);
+                        }}/>
                   </Col>
                 )}
               </>
@@ -163,7 +169,10 @@ export const MainView = () => {
                   <>
                     {movies.map((movie) => (
                       <Col className="mb-5 d-flex" key={movie.id} xs={12} sm={6} md={4} lg={3}>
-                        <MovieCard movie={movie} />
+                        <MovieCard movie={movie} user={userObject} token={token} setuser={(user) =>{
+                          setUserName(user.username);
+                          setUserObject(user);
+                        }} />
                       </Col>
                     ))}
                   </>
@@ -180,7 +189,10 @@ export const MainView = () => {
               <Navigate to="/login" replace />
             ) : (
               <Col>
-               <ProfileView/>
+               <ProfileView user={userObject} movies={movies} token={token} updateUsername={(user) => {
+                      setUserName(user.username);
+                      setUserObject(user);
+                    }} />
               </Col>
             )}
           </>

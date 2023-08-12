@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
 
-export const LoginView = ({ onLoginSubmit }) => {
+export const LoginView = ({ onLoginSubmit}) => {
    const [userName, setUserName] = useState("");
    const [pass, setPass] = useState("");
 
@@ -24,7 +24,9 @@ export const LoginView = ({ onLoginSubmit }) => {
             if (data.user) {
                localStorage.setItem("user", JSON.stringify(data.user.username));
                localStorage.setItem("token", data.token);
-               onLoginSubmit(data.user.username, data.token);
+               localStorage.setItem("userObject", JSON.stringify(data.user));
+               onLoginSubmit(data.user.username, data.token, data.user);
+               
             }
             else {
                alert("Login failed");
