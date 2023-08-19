@@ -4,10 +4,9 @@ import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
 
-export const LoginView = ({ onLoginSubmit }) => {
+export const LoginView = ({ onLoginSubmit}) => {
    const [userName, setUserName] = useState("");
    const [pass, setPass] = useState("");
-   const [clicked, setClicked] = useState(false);
 
    const handleSubmit = (e) => {
       e.preventDefault();
@@ -25,7 +24,9 @@ export const LoginView = ({ onLoginSubmit }) => {
             if (data.user) {
                localStorage.setItem("user", JSON.stringify(data.user.username));
                localStorage.setItem("token", data.token);
-               onLoginSubmit(data.user.username, data.token);
+               localStorage.setItem("userObject", JSON.stringify(data.user));
+               onLoginSubmit(data.user.username, data.token, data.user);
+               
             }
             else {
                alert("Login failed");
@@ -33,7 +34,7 @@ export const LoginView = ({ onLoginSubmit }) => {
          });
 
    };
-   if (!clicked) {
+
       return (<div className="login">
 
          <Form className="form" onSubmit={handleSubmit}>
@@ -54,9 +55,7 @@ export const LoginView = ({ onLoginSubmit }) => {
                Submit
             </Button>
             <Form.Text className="text-muted text-center">Don't have account?<br/></Form.Text>
-            <Form.Text className="text-center logout-button" onClick={() =>{
-               setClicked(true);
-            }}>Signup</Form.Text>
+            <Form.Text className="text-center logout-button" >Register</Form.Text>
          </Form>
 
         {/*  <h1>Login</h1>
@@ -74,14 +73,8 @@ export const LoginView = ({ onLoginSubmit }) => {
             </div>
          </form> */}
       </div>);
-   }
-   else {
-      console.log(clicked);
-      return (
-         <div>
-            <Register afterRegis={() => setClicked(false)} />
-         </div>);
-   }
+   
+  
 
 
 

@@ -10,7 +10,7 @@ import { Container } from "react-bootstrap";
 // Main component (will eventually use all the others)
 const MyFlixApplication = () => {
   return(
-  <Container fluid>
+  <Container fluid className="m-0 p-0">
     <MainView className="my-flix" />;
   </Container>
   );
