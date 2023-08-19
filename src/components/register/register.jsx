@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
-export const Register = ({ afterRegis }) => {
+export const Register = () => {
     const [email, setEmail] = useState("");
     const [birthdate, setBirthdate] = useState("");
     const [username, setUsername] = useState("");
@@ -24,7 +24,6 @@ export const Register = ({ afterRegis }) => {
         }).then((response) => {
             if (response.ok) {
                 alert("Signup successfull!!!!");
-                afterRegis();
                 window.location.reload();
             }
             else {

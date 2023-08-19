@@ -9,3 +9,9 @@
      background-color:  rgb(95, 137, 230);
  }
 
+ .card-image{
+    max-height: 20%;
+    max-width: 30%;
+    margin: 20 auto;
+ }
+
