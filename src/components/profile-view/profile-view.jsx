@@ -3,8 +3,17 @@ import { Card, Button, Row, Col, Modal, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../movie-card/movie-card.css";
 import { MovieCard } from "../movie-card/movie-card.jsx";
+import { useSelector, useDispatch } from "react-redux";
+import { setUser } from "../../redux/reducers/user";
 
-export const ProfileView = ({ user, movies, token, updateUsername }) => {
+
+export const ProfileView = () => {
+
+    const movies = useSelector((state) => state.movies.list);
+    const user = useSelector((state) => state.user.userObject);
+    const token = useSelector((state) => state.user.token);
+    const dispatch = useDispatch();
+
 
     const [username, setUsername] = useState(user.username);
     const [password, setPassword] = useState("");
@@ -18,7 +27,7 @@ export const ProfileView = ({ user, movies, token, updateUsername }) => {
     handleShow = () => setShow(true);
     handleClose = () => setShow(false);
     updateUser = () => {
-       
+
 
         const data = {
             username: username,
@@ -33,9 +42,10 @@ export const ProfileView = ({ user, movies, token, updateUsername }) => {
         }).then((response) => response.json())
             .then((res) => {
                 if (res.username) {
-                    localStorage.setItem("user", JSON.stringify(res.username));
+                    /* localStorage.setItem("user", JSON.stringify(res.username));
                     localStorage.setItem("userObject", JSON.stringify(res));
-                    updateUsername(res);
+                    updateUsername(res); */
+                    dispatch(setUser(res));
                     alert("Your account is updated");
                 }
                 else {
@@ -49,7 +59,7 @@ export const ProfileView = ({ user, movies, token, updateUsername }) => {
         fetch("https://myflix-h3mr.onrender.com/users/" + username, {
             method: "DELETE",
             headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` }
-            })
+        })
             .then((response) => {
                 if (response.ok) {
                     return response.json();
@@ -58,8 +68,9 @@ export const ProfileView = ({ user, movies, token, updateUsername }) => {
             .then((data) => {
                 console.log(data);
                 alert("Your account is deleted successfully!");
-                updateUsername(null);
-                localStorage.clear();
+                /* updateUsername(null);
+                localStorage.clear(); */
+                dispatch(setUser(null));
                 window.location.reload();
 
 
@@ -68,7 +79,6 @@ export const ProfileView = ({ user, movies, token, updateUsername }) => {
     handleDeregister = () => setDeregister(true);
     handleCloseDeregister = () => setDeregister(false);
 
-    if (username !== null) {
         return (<>
             <Row>
                 <Col md={6} className="mx-auto">
@@ -94,7 +104,7 @@ export const ProfileView = ({ user, movies, token, updateUsername }) => {
                 <h2 className="text-center mb-5 mt-5">Favourite Movies</h2>
                 {favourite_movies.map((movie) => (
                     <Col className="mb-5 d-flex" key={movie.id} xs={12} sm={6} md={4} lg={3}>
-                        <MovieCard movie={movie} user={user} token={token} setuser={(user) => updateUsername(user)} />
+                        <MovieCard movie={movie} />
                     </Col>
                 ))}
             </Row>
@@ -157,7 +167,6 @@ export const ProfileView = ({ user, movies, token, updateUsername }) => {
         </>
 
         );
-    }
 
 
 };

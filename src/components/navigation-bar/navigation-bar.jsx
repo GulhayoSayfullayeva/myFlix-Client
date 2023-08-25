@@ -1,8 +1,13 @@
 import "../main-view/main-view.css";
 import { Navbar, Container, Nav } from "react-bootstrap";
-import Link from "react-router-dom";
+import {Link, Router} from "react-router-dom";
+import {useSelector, useDispatch} from "react-redux";
+import { setUser, setToken } from "../../redux/reducers/user";
 
-export const NavigationBar = ({ user, onLogout }) => {
+export const NavigationBar = () => {
+    const user = useSelector((state) => state.user.userObject);
+    const dispatch = useDispatch();
+
     return (
         <Navbar bg="primary" data-bs-theme="dark" expand="lg">
             <Container>
@@ -13,16 +18,22 @@ export const NavigationBar = ({ user, onLogout }) => {
 
                         {!user && (
                             <>
-                            
-                                <Nav.Link  href='/login'>Login</Nav.Link>
-                                <Nav.Link  href="/register">Register</Nav.Link>
+
+                                <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                                <Nav.Link as={Link} to="/register">Register</Nav.Link>
                             </>
                         )}
                         {user && (
                             <>
-                                <Nav.Link  href="/">Home</Nav.Link>
-                                <Nav.Link  href="/profile">Profile</Nav.Link>
-                                <Nav.Link  onClick={onLogout}>Logout</Nav.Link>
+                                <Nav.Link as={Link} to="/">Home</Nav.Link>
+                                <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
+                                <Nav.Link onClick={() => {
+                                    dispatch(setUser(null));
+                                    dispatch(setToken(null));
+                                    /* setUserName(null);
+                                    setToken(null);
+                                    localStorage.clear(); */
+                                }}>Logout</Nav.Link>
                             </>
                         )
 
