@@ -52810,29 +52810,6 @@ const LoginView = ()=>{
                     fileName: "src/components/login/login.jsx",
                     lineNumber: 60,
                     columnNumber: 10
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Text, {
-                    className: "text-muted text-center",
-                    children: [
-                        "Don't have account?",
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                            fileName: "src/components/login/login.jsx",
-                            lineNumber: 63,
-                            columnNumber: 75
-                        }, undefined)
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/login/login.jsx",
-                    lineNumber: 63,
-                    columnNumber: 10
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Text, {
-                    className: "text-center logout-button",
-                    children: "Register"
-                }, void 0, false, {
-                    fileName: "src/components/login/login.jsx",
-                    lineNumber: 64,
-                    columnNumber: 10
                 }, undefined)
             ]
         }, void 0, true, {

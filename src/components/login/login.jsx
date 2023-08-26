@@ -60,8 +60,6 @@ export const LoginView = () => {
          <Button variant="primary" type="submit">
             Submit
          </Button>
-         <Form.Text className="text-muted text-center">Don't have account?<br /></Form.Text>
-         <Form.Text className="text-center logout-button" >Register</Form.Text>
       </Form>
 
       {/*  <h1>Login</h1>
