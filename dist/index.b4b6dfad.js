@@ -53664,7 +53664,7 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","../movie-card/movie-card.css":"dezC3","../movie-card/movie-card.jsx":"bwuIu","react-redux":"bdVon","../../redux/reducers/user":"e6tdF","@parcel/transformer-js/src/esmodule-helpers.js":"efIbX","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7a89a"}],"dezC3":[function() {},{}],"l0qwl":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","../movie-card/movie-card.css":"dezC3","../movie-card/movie-card.jsx":"bwuIu","@parcel/transformer-js/src/esmodule-helpers.js":"efIbX","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7a89a","react-redux":"bdVon","../../redux/reducers/user":"e6tdF"}],"dezC3":[function() {},{}],"l0qwl":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "setMovies", ()=>setMovies);
@@ -53817,7 +53817,7 @@ $RefreshReg$(_c, "Movies_Filter");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-redux":"bdVon","../../redux/reducers/movies":"l0qwl","@parcel/transformer-js/src/esmodule-helpers.js":"efIbX","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7a89a","react-bootstrap":"3AD9A"}],"i5LP7":[function() {},{}],"gqWOm":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-redux":"bdVon","../../redux/reducers/movies":"l0qwl","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"efIbX","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7a89a"}],"i5LP7":[function() {},{}],"gqWOm":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "store", ()=>store);
