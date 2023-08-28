@@ -6,13 +6,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.scss";
 import { MainView } from './components/main-view/main-view';
 import { Container } from "react-bootstrap";
+import {Provider} from "react-redux";
+import { store } from "./redux/store/store";
 
 // Main component (will eventually use all the others)
 const MyFlixApplication = () => {
-  return(
-  <Container fluid className="m-0 p-0">
-    <MainView className="my-flix" />;
-  </Container>
+  return (
+    <Provider store={store}>
+      <Container fluid className="m-0 p-0">
+        <MainView className="my-flix" />;
+      </Container>
+    </Provider>
   );
 
 };

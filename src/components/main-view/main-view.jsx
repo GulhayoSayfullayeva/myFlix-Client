@@ -7,15 +7,19 @@ import { Container } from "react-bootstrap";
 import { Navbar } from "react-bootstrap";
 import { Button, Row, Col } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-
-import PropTypes from 'prop-types';
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { Register } from "../register/register";
 import { ProfileView } from "../profile-view/profile-view.jsx";
+import {useSelector, useDispatch} from "react-redux";
+import { setMovies } from "../../redux/reducers/movies";
+import { Movies_List } from "../movies-list/movies-list";
+
 
 export const MainView = () => {
 
-  const [movies, setMovies] = useState([
+  const movies = useSelector((state) => state.movies.list);
+  const dispatch = useDispatch();
+
     /*     {
           "id": "641369d23edd82a71107b1bb",
           "title": "Silence of the Lambs",
@@ -50,15 +54,15 @@ export const MainView = () => {
           "director": { "name": "George Lucas", "bio": "George Walton Lucas Jr. is an American filmmaker. Lucas is best known for creating the Star Wars and Indiana Jones franchises and founding Lucasfilm, LucasArts, Industrial Light & Magic and THX.", "Birthyear": "1944" },
           "genre": { "name": "science fiction", "description": "Science fiction (or sci-fi) is a film genre that uses speculative, fictional science-based depictions of phenomena that are not fully accepted by mainstream science, such as extraterrestrial lifeforms, spacecraft, robots, cyborgs, dinosaurs, interstellar travel, time travel, or other technologies." }
         } */
+  const user = useSelector((state) => state.user.userObject);
+  const token = useSelector((state) => state.user.token);
 
-  ]);
-
-  const savedUser = JSON.parse(localStorage.getItem("user"));
+  /* const savedUser = JSON.parse(localStorage.getItem("user"));
   const savedToken = localStorage.getItem("token");
   const savedUserObject = JSON.parse(localStorage.getItem("userObject"));
   const [userName, setUserName] = useState(savedUser ? savedUser : null);
   const [token, setToken] = useState(savedToken ? savedToken : null);
-  const [userObject, setUserObject] = useState(savedUserObject ? savedUserObject : null);
+  const [userObject, setUserObject] = useState(savedUserObject ? savedUserObject : null); */
 
   useEffect(() => {
     if (!token) {
@@ -88,8 +92,7 @@ export const MainView = () => {
             image: movie.imageUrl
           };
         });
-
-        setMovies(moviesFromApi);
+        dispatch(setMovies(moviesFromApi));
         console.log(moviesFromApi);
       });
   }, [token]);
@@ -98,20 +101,13 @@ export const MainView = () => {
 
   return (
     <BrowserRouter>
-      <NavigationBar
-        user={userName}
-        onLogout={() => {
-          setUserName(null);
-          setToken(null);
-          localStorage.clear();
-        }}
-      />
+      <NavigationBar/>
       <Row className="justify-content-md-center">
         <Routes>
           <Route path="/register"
             element={
               <>
-                {userName ? (
+                {user ? (
                   <Navigate to="/" />
                 ) : (
                   <Col>
@@ -124,15 +120,11 @@ export const MainView = () => {
           <Route path="/login"
             element={
               <>
-                {userName ? (
+                {user ? (
                   <Navigate to="/" />
                 ) : (
                   <Col>
-                    <LoginView onLoginSubmit={(user, token, userObject) => {
-                      setUserName(user);
-                      setToken(token);
-                      setUserObject(userObject);
-                    }}/>
+                    <LoginView />
                   </Col>
                 )}
               </>
@@ -142,16 +134,13 @@ export const MainView = () => {
           <Route path="/movies/:movieTitle"
             element={
               <>
-                {!userName ? (
+                {!user ? (
                   <Navigate to="/login" replace />
                 ) : movies.length === 0 ? (
                   <Col>No movies</Col>
                 ) : (
                   <Col md={6} className="application">
-                    <MovieView movies={movies} user={userObject} token={token} setuser={(user) =>{
-                          setUserName(user.username);
-                          setUserObject(user);
-                        }}/>
+                    <MovieView />
                   </Col>
                 )}
               </>
@@ -161,22 +150,21 @@ export const MainView = () => {
           <Route path="/"
             element={
               <>
-                {!userName ? (
+                {!user ? (
                   <Navigate to="/login" replace />
-                ) : movies.length === 0 ? (
+                ) : <Movies_List />}
+                {/*   movies.length === 0 ? (
                   <Col>No movies</Col>
                 ) : (
                   <>
                     {movies.map((movie) => (
                       <Col className="mb-5 d-flex" key={movie.id} xs={12} sm={6} md={4} lg={3}>
-                        <MovieCard movie={movie} user={userObject} token={token} setuser={(user) =>{
-                          setUserName(user.username);
-                          setUserObject(user);
-                        }} />
+                        <MovieCard movie={movie} />
                       </Col>
-                    ))}
+                    ))} 
+
                   </>
-                )}
+                )} */}
               </>
             }
           />
@@ -185,21 +173,11 @@ export const MainView = () => {
       <Route path="/profile"
         element={
           <>
-            { !userName ? (
+            { !user ? (
               <Navigate to="/login" replace />
             ) : (
               <Col>
-               <ProfileView user={userObject} movies={movies} token={token} updateUsername={(user) => {
-                      if( user !== null){
-                        setUserName(user.username);
-                        setUserObject(user);
-                      }
-                      else{
-                        setUserName(null);
-                        setUserObject(null);
-                      }
-                      
-                    }} />
+               <ProfileView />
               </Col>
             )}
           </>
@@ -209,63 +187,7 @@ export const MainView = () => {
 
         </Routes>
       </Row>
-      {/*       <Row className="justify-content-md-center">
-        {!userName ?
-          (
-            <div>
-              <LoginView onLoginSubmit={(user, token) => {
-                setUserName(user);
-                setToken(token);
-              }
-              } />
-            </div>
-          ) : selectedMovie ? (
-
-            <Col md={6} className="application">
-              <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-            </Col>
-          ) : (
-            <div className="application">
-              <Navbar className="navbar bg-primary">
-                <Container>
-                  <Navbar.Brand href="#home" className="justify-content-space-between application-title">
-                    <img src="https://icons-for-free.com/iconfiles/png/512/svg+general+ham+list+menu+menu+icon+office+icon-1320185157378483623.png" height="45" width="45" alt="" />
-                    {' '}
-                    <Navbar.Text className="fs-3 bold text-white">MovieList</Navbar.Text>
-                  </Navbar.Brand>
-                  <Navbar.Toggle />
-                  <Navbar.Collapse className="justify-content-end">
-                    <Navbar.Text onClick={() => {
-                      setUserName(null);
-                      setToken(null);
-                      localStorage.clear();
-                    }}>
-                      <span className="logout-button fs-4 text-white">Logout</span>
-
-                    </Navbar.Text>
-                  </Navbar.Collapse>
-                </Container>
-              </Navbar>
-              <Row >
-                {movies.map((movie) => (
-                  <Col className="mb-5 d-flex" key={movie.id} xs={12} sm={6} md={3}>
-                    <MovieCard
-                      movie={movie}
-                      onMovieClick={(newSelectedMovie) => {
-                        setSelectedMovie(newSelectedMovie);
-                      }}
-                    />
-                  </Col>
-
-                ))}
-              </Row>
-
-            </div>
-          )
-        }
-      </Row> */}
-
-    </BrowserRouter>
+  </BrowserRouter>
 
   );
 

@@ -4,8 +4,16 @@ import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
+import {useSelector, useDispatch} from "react-redux";
+import { setUser } from '../../redux/reducers/user';
 
-export const MovieView = ({ movies, user, token, setuser }) => {
+export const MovieView = () => {
+
+    const movies = useSelector( (state) => state.movies.list);
+    const user = useSelector((state) => state.user.userObject);
+    const token = useSelector((state) => state.user.token);
+    const dispatch = useDispatch();
+
     const {movieTitle} = useParams();
     const movie = movies.find((movie) => movie.title === movieTitle);
     const [isFavourite, setIsFavourite] = useState(false);
@@ -30,8 +38,9 @@ export const MovieView = ({ movies, user, token, setuser }) => {
             }})
             .then((res) => {
                   setIsFavourite(true);
-                  setuser(res);
-                  localStorage.setItem("userObject", JSON.stringify(res));
+                  /* setuser(res);
+                  localStorage.setItem("userObject", JSON.stringify(res)); */
+                  dispatch(setUser(res));
                   alert("Movie is added to favouriteList");
             });
     }
@@ -48,8 +57,9 @@ export const MovieView = ({ movies, user, token, setuser }) => {
             }})
             .then((res) => {
                   setIsFavourite(false);
-                  setuser(res);
-                  localStorage.setItem("userObject", JSON.stringify(res));
+                 /*  setuser(res);
+                  localStorage.setItem("userObject", JSON.stringify(res)); */
+                  dispatch(setUser(res));
                   alert("Movie is removed from favouriteList");
             });
     };
@@ -105,7 +115,7 @@ export const MovieView = ({ movies, user, token, setuser }) => {
 
 };
 
-MovieView.propTypes = {
+/* MovieView.propTypes = {
     movie: PropTypes.shape({
         image: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
@@ -119,4 +129,4 @@ MovieView.propTypes = {
             description: PropTypes.string
         })
     })
-};
+}; */
