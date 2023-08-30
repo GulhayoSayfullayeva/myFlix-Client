@@ -2,6 +2,7 @@ import { Row , Col} from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Movies_Filter } from "../movies-filter/movies-filter";
 import { MovieCard } from "../movie-card/movie-card";
+import "../movies-filter/movies-filter.css";
 
 
 
@@ -15,8 +16,11 @@ export const Movies_List = () => {
 
       return (
         <>
-          <Row className="movieCard">
+          <Row className="search">
+            <Col className="mx-auto mt-5" xs={12} sm={6} md={4} lg={3}>
             <Movies_Filter />
+            </Col>
+            
           </Row>
           <Row>
             { movies.length===0 ? (

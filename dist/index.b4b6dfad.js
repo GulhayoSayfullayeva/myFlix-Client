@@ -53703,6 +53703,7 @@ var _reactBootstrap = require("react-bootstrap");
 var _reactRedux = require("react-redux");
 var _moviesFilter = require("../movies-filter/movies-filter");
 var _movieCard = require("../movie-card/movie-card");
+var _moviesFilterCss = require("../movies-filter/movies-filter.css");
 var _s = $RefreshSig$();
 const Movies_List = ()=>{
     _s();
@@ -53713,15 +53714,26 @@ const Movies_List = ()=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                className: "movieCard",
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _moviesFilter.Movies_Filter), {}, void 0, false, {
+                className: "search",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                    className: "mx-auto mt-5",
+                    xs: 12,
+                    sm: 6,
+                    md: 4,
+                    lg: 3,
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _moviesFilter.Movies_Filter), {}, void 0, false, {
+                        fileName: "src/components/movies-list/movies-list.jsx",
+                        lineNumber: 21,
+                        columnNumber: 13
+                    }, undefined)
+                }, void 0, false, {
                     fileName: "src/components/movies-list/movies-list.jsx",
-                    lineNumber: 19,
+                    lineNumber: 20,
                     columnNumber: 13
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/movies-list/movies-list.jsx",
-                lineNumber: 18,
+                lineNumber: 19,
                 columnNumber: 11
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
@@ -53729,7 +53741,7 @@ const Movies_List = ()=>{
                     children: "MoviesList is empty"
                 }, void 0, false, {
                     fileName: "src/components/movies-list/movies-list.jsx",
-                    lineNumber: 23,
+                    lineNumber: 27,
                     columnNumber: 17
                 }, undefined) : filteredMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                         className: "mb-5 d-flex",
@@ -53741,17 +53753,17 @@ const Movies_List = ()=>{
                             movie: movie
                         }, void 0, false, {
                             fileName: "src/components/movies-list/movies-list.jsx",
-                            lineNumber: 27,
+                            lineNumber: 31,
                             columnNumber: 24
                         }, undefined)
                     }, movie.id, false, {
                         fileName: "src/components/movies-list/movies-list.jsx",
-                        lineNumber: 26,
+                        lineNumber: 30,
                         columnNumber: 21
                     }, undefined))
             }, void 0, false, {
                 fileName: "src/components/movies-list/movies-list.jsx",
-                lineNumber: 21,
+                lineNumber: 25,
                 columnNumber: 11
             }, undefined)
         ]
@@ -53772,7 +53784,7 @@ $RefreshReg$(_c, "Movies_List");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-bootstrap":"3AD9A","react-redux":"bdVon","../movies-filter/movies-filter":"kxBRK","../movie-card/movie-card":"bwuIu","@parcel/transformer-js/src/esmodule-helpers.js":"efIbX","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7a89a"}],"kxBRK":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-bootstrap":"3AD9A","react-redux":"bdVon","../movies-filter/movies-filter":"kxBRK","../movie-card/movie-card":"bwuIu","@parcel/transformer-js/src/esmodule-helpers.js":"efIbX","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7a89a","../movies-filter/movies-filter.css":"aJ8vl"}],"kxBRK":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$adcf = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -53786,6 +53798,7 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _reactRedux = require("react-redux");
 var _movies = require("../../redux/reducers/movies");
 var _reactBootstrap = require("react-bootstrap");
+var _moviesFilterCss = require("./movies-filter.css");
 var _s = $RefreshSig$();
 const Movies_Filter = ()=>{
     _s();
@@ -53798,7 +53811,7 @@ const Movies_Filter = ()=>{
         onChange: (e)=>dispatch((0, _movies.setFilter)(e.target.value))
     }, void 0, false, {
         fileName: "src/components/movies-filter/movies-filter.jsx",
-        lineNumber: 13,
+        lineNumber: 14,
         columnNumber: 9
     }, undefined);
 };
@@ -53817,7 +53830,7 @@ $RefreshReg$(_c, "Movies_Filter");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-redux":"bdVon","../../redux/reducers/movies":"l0qwl","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"efIbX","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7a89a"}],"i5LP7":[function() {},{}],"gqWOm":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-redux":"bdVon","../../redux/reducers/movies":"l0qwl","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"efIbX","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"7a89a","./movies-filter.css":"aJ8vl"}],"aJ8vl":[function() {},{}],"aJ8vl":[function() {},{}],"i5LP7":[function() {},{}],"gqWOm":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "store", ()=>store);
