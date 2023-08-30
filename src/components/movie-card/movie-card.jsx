@@ -39,7 +39,7 @@ export const MovieCard = ({ movie }) => {
                 dispatch(setUser(res));
                 alert("Movie is added to favouriteList");
             });
-    }
+    };
     removeFromFavourite = () => {
         fetch("https://myflix-h3mr.onrender.com/users/" + user.username + "/" + movie.id, {
             method: "DELETE",
