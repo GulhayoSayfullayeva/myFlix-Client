@@ -2,7 +2,9 @@
   "name": "myflixclient",
   "version": "1.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel src/index.html"
+    
   },
   "repository": {
     "type": "git",
