@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setFilter } from "../../redux/reducers/movies";
 import { Form } from "react-bootstrap";
+import  "./movies-filter.css";
 
 
 
@@ -10,7 +11,7 @@ export const Movies_Filter = () => {
 
 
     return (
-        <Form.Control
+        <Form.Control 
             type="text"
             placeholder="Search..."
             value={filter}

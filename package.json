@@ -2,7 +2,9 @@
   "name": "myflixclient",
   "version": "1.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel src/index.html"
+    
   },
   "repository": {
     "type": "git",
@@ -29,7 +31,8 @@
   },
   "description": "Objective\r Using React, build the client-side for an app called myFlix based on its\r existing server-side code (REST API and database).\r Context\r Client-side development hasn’t always been so prominent. In the past, pages would be generated on\r the server-side and sent to the browser, resulting in a poor user experience. Thanks to modern\r browsers and libraries such as React, the client-side of an app is today considered to be just as\r important as the server-side. Full-stack developers need to be well-versed in both server-side and\r client-side development.\r In the previous Achievement, you built the server-side for a movie app called myFlix. The API and\r database that you built meet the information needs of myFlix users. Now, you need to create the\r interface they’ll use when making requests to—and receiving responses from—the server-side. The\r client-side of your myFlix app will include several interface views (built using the React library) that will\r handle data through the (previously defined) REST API endpoints.\r The code you write impacts both your users and your fellow developers. As you work through this\r Achievement, you’ll need to consider, among other things, the readability and maintenance of your\r codebase, and the design and usability of your app.\r By the end of the Achievement, you’ll have a complete web app (client-side and server-side) built using\r full-stack JavaScript technologies, which you can then showcase in your portfolio. This project will\r demonstrate your mastery of full-stack JavaScript development. The complete tech stack you’ll\r master is known as the MERN (MongoDB, Express, React, and Node.js) stack.",
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.8.3",
+    "@parcel/transformer-sass": "^2.9.3",
+    "parcel": "^2.9.3",
     "process": "^0.11.10"
   },
   "main": "index.js"
