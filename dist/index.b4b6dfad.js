@@ -27533,7 +27533,7 @@ const MovieCard = ({ movie })=>{
                 className: "text-center mb-3",
                 children: !isFavourite ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                     variant: "primary",
-                    onClick: addToFavourite,
+                    onClick: ()=>addToFavourite(),
                     children: "Add to FavouriteList"
                 }, void 0, false, {
                     fileName: "src/components/movie-card/movie-card.jsx",
@@ -27541,7 +27541,7 @@ const MovieCard = ({ movie })=>{
                     columnNumber: 21
                 }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                     variant: "primary",
-                    onClick: removeFromFavourite,
+                    onClick: ()=>removeFromFavourite(),
                     children: "Remove from FavouriteList"
                 }, void 0, false, {
                     fileName: "src/components/movie-card/movie-card.jsx",
