@@ -20,7 +20,7 @@ export const MovieCard = ({ movie }) => {
         }
     }, []);
 
-    addToFavourite = () => {
+    function addToFavourite() {
         fetch("https://myflix-h3mr.onrender.com/users/" + user.username + "/" + movie.id, {
             method: "POST",
             headers: {
@@ -40,7 +40,7 @@ export const MovieCard = ({ movie }) => {
                 alert("Movie is added to favouriteList");
             });
     };
-    removeFromFavourite = () => {
+    function removeFromFavourite() {
         fetch("https://myflix-h3mr.onrender.com/users/" + user.username + "/" + movie.id, {
             method: "DELETE",
             headers: {

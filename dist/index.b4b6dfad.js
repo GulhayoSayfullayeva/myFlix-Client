@@ -27448,7 +27448,7 @@ const MovieCard = ({ movie })=>{
         console.log(user);
         if (user.favourite_movies && user.favourite_movies.includes(movie.id)) setIsFavourite(true);
     }, []);
-    addToFavourite = ()=>{
+    function addToFavourite() {
         fetch("https://myflix-h3mr.onrender.com/users/" + user.username + "/" + movie.id, {
             method: "POST",
             headers: {
@@ -27463,8 +27463,8 @@ const MovieCard = ({ movie })=>{
                 localStorage.setItem("userObject", JSON.stringify(res)); */ dispatch((0, _user.setUser)(res));
             alert("Movie is added to favouriteList");
         });
-    };
-    removeFromFavourite = ()=>{
+    }
+    function removeFromFavourite() {
         fetch("https://myflix-h3mr.onrender.com/users/" + user.username + "/" + movie.id, {
             method: "DELETE",
             headers: {
@@ -27479,7 +27479,7 @@ const MovieCard = ({ movie })=>{
                 localStorage.setItem("userObject", JSON.stringify(res)); */ dispatch((0, _user.setUser)(res));
             alert("Movie is removed from favouriteList");
         });
-    };
+    }
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
         className: " movieCard",
         children: [
