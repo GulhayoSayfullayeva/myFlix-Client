@@ -25,7 +25,7 @@ export const MovieView = () => {
       }
     }, []);
 
-    addToFavourite = () => {
+    function addToFavourite() {
         fetch("https://myflix-h3mr.onrender.com/users/" + user.username +"/" + movie.id, {
             method: "POST",
             headers: {
@@ -43,8 +43,8 @@ export const MovieView = () => {
                   dispatch(setUser(res));
                   alert("Movie is added to favouriteList");
             });
-    }
-    removeFromFavourite = () => {
+    };
+    function removeFromFavourite() {
         fetch("https://myflix-h3mr.onrender.com/users/" + user.username +"/" + movie.id, {
             method: "DELETE",
             headers: {
@@ -76,9 +76,9 @@ export const MovieView = () => {
             </Card.Text>
             <Card.Footer className="text-center ">
             { !isFavourite ? (
-                  <Button variant="primary" onClick={addToFavourite}>Add to FavouriteList</Button>
+                  <Button variant="primary" onClick={() => addToFavourite()}>Add to FavouriteList</Button>
                 ) : (
-                  <Button variant="primary" onClick={removeFromFavourite}>Remove from FavouriteList</Button>
+                  <Button variant="primary" onClick={() => removeFromFavourite()}>Remove from FavouriteList</Button>
                 )}
             </Card.Footer>
             <Link to={"/"}>

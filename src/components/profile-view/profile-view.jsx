@@ -24,9 +24,13 @@ export const ProfileView = () => {
     const favourite_movies = movies.filter((movie) => user.favourite_movies.includes(movie.id));
 
 
-    handleShow = () => setShow(true);
-    handleClose = () => setShow(false);
-    updateUser = () => {
+    function handleShow() {
+        setShow(true);
+    };
+    function handleClose() {
+        setShow(false);
+    };
+    function updateUser() {
 
 
         const data = {
@@ -55,7 +59,7 @@ export const ProfileView = () => {
         setShow(false);
 
     };
-    deleteUser = () => {
+    function deleteUser() {
         fetch("https://myflix-h3mr.onrender.com/users/" + username, {
             method: "DELETE",
             headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` }
@@ -76,8 +80,12 @@ export const ProfileView = () => {
 
             });
     };
-    handleDeregister = () => setDeregister(true);
-    handleCloseDeregister = () => setDeregister(false);
+    function handleDeregister(){
+        setDeregister(true);
+    };
+    function handleCloseDeregister(){
+        setDeregister(false);
+    };
 
         return (<>
             <Row>
@@ -92,8 +100,8 @@ export const ProfileView = () => {
                                 Birthday: {birthday}<br />
                             </Card.Text>
 
-                            <Button variant="primary" data-inline="true" className="m-4 float-end" onClick={handleShow}>Update profile</Button>
-                            <Button variant="primary" data-inline="true" className="m-4 float-end" onClick={handleDeregister}>Deregister your account</Button>
+                            <Button variant="primary" data-inline="true" className="m-4 float-end" onClick={() => handleShow()}>Update profile</Button>
+                            <Button variant="primary" data-inline="true" className="m-4 float-end" onClick={() => handleDeregister()}>Deregister your account</Button>
 
 
                         </Card.Body>
@@ -108,7 +116,7 @@ export const ProfileView = () => {
                     </Col>
                 ))}
             </Row>
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={() => handleClose()}>
                 <Modal.Header closeButton>
                     <Modal.Title className="ms-auto">Update Profile</Modal.Title>
                 </Modal.Header>
@@ -138,16 +146,16 @@ export const ProfileView = () => {
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
+                    <Button variant="secondary" onClick={() => handleClose()}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={updateUser}>
+                    <Button variant="primary" onClick={() => updateUser()}>
                         Update User
                     </Button>
                 </Modal.Footer>
             </Modal>
 
-            <Modal show={deregister} onHide={handleCloseDeregister}>
+            <Modal show={deregister} onHide={() => handleCloseDeregister()}>
                 <Modal.Header closeButton>
                     <Modal.Title className="ms-auto">Deregister</Modal.Title>
                 </Modal.Header>
@@ -155,10 +163,10 @@ export const ProfileView = () => {
                     <p>Do you want to delete your account?</p>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseDeregister}>
+                    <Button variant="secondary" onClick={() => handleCloseDeregister()}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={deleteUser}>
+                    <Button variant="primary" onClick={() => deleteUser()}>
                         Delete account
                     </Button>
                 </Modal.Footer>
